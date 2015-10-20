@@ -17,6 +17,8 @@ namespace MARS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            Console.WriteLine("Coucou, c'est un test ! ");
         }
     }
 }
