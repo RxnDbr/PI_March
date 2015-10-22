@@ -23,5 +23,11 @@ public class Astronaut
 		set;
 	}
 
+	public virtual IEnumerable<Activity> l_activity
+	{
+		get;
+		set;
+	}
+
 }
 

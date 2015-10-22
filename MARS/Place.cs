@@ -29,6 +29,12 @@ public class Place
 		set;
 	}
 
+	public virtual IEnumerable<Outside> l_outside
+	{
+		get;
+		set;
+	}
+
 	public Place(int pixel_x, int pixel_y, string name)
 	{
 	}

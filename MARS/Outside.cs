@@ -9,7 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Emergency : Activity
+public class Outside : Activity
 {
+	public override Place Place
+	{
+		get;
+		set;
+	}
+
 }
 

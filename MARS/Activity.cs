@@ -17,7 +17,7 @@ public abstract class Activity
 		set;
 	}
 
-	public virtual object type
+	public virtual string type
 	{
 		get;
 		set;
@@ -45,6 +45,10 @@ public abstract class Activity
 	{
 		get;
 		set;
+	}
+
+	public Activity(string type)
+	{
 	}
 
 }

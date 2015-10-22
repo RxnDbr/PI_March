@@ -17,7 +17,31 @@ public class Mission
 		set;
 	}
 
+	private DateTime begniningDateEarth
+	{
+		get;
+		set;
+	}
+
+	private list<> l_genericActivity
+	{
+		get;
+		set;
+	}
+
 	public virtual Day l_day
+	{
+		get;
+		set;
+	}
+
+	public virtual IEnumerable<Astronaut> l_astronaut
+	{
+		get;
+		set;
+	}
+
+	public virtual IEnumerable<Place> l_place
 	{
 		get;
 		set;
@@ -33,7 +57,7 @@ public class Mission
 		throw new System.NotImplementedException();
 	}
 
-	public Mission(int howmanydays)
+	public Mission(int howmanydays, DateTime beginningDateEatrh, list<Astronaut> l_astronaut)
 	{
 	}
 
@@ -48,6 +72,11 @@ public class Mission
 	}
 
 	public virtual void modifyStatus(Status newStatus)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public virtual list<> getListActivity()
 	{
 		throw new System.NotImplementedException();
 	}

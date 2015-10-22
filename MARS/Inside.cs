@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public abstract class Exploration : Science, IOutside
+public class Inside : Activity
 {
-	public virtual Place Place
+	public virtual string typeOfExploration
 	{
 		get;
 		set;
