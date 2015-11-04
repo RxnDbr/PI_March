@@ -42,26 +42,15 @@
   <ItemGroup>
     <Compile Include="GeneratedCode\Activity.cs" />
     <Compile Include="GeneratedCode\Astronaut.cs" />
-    <Compile Include="GeneratedCode\Communication.cs" />
     <Compile Include="GeneratedCode\Day.cs" />
-    <Compile Include="GeneratedCode\Emergency.cs" />
-    <Compile Include="GeneratedCode\Exploration.cs" />
     <Compile Include="GeneratedCode\Future.cs" />
     <Compile Include="GeneratedCode\Inside.cs" />
-    <Compile Include="GeneratedCode\IOutside.cs" />
-    <Compile Include="GeneratedCode\Living.cs" />
-    <Compile Include="GeneratedCode\Maintenance.cs" />
     <Compile Include="GeneratedCode\Mission.cs" />
     <Compile Include="GeneratedCode\Outside.cs" />
-    <Compile Include="GeneratedCode\OutsideExperiment.cs" />
     <Compile Include="GeneratedCode\Past.cs" />
     <Compile Include="GeneratedCode\Place.cs" />
     <Compile Include="GeneratedCode\Present.cs" />
-    <Compile Include="GeneratedCode\Repair.cs" />
-    <Compile Include="GeneratedCode\Science.cs" />
-    <Compile Include="GeneratedCode\Space Suit.cs" />
     <Compile Include="GeneratedCode\TimeUnit.cs" />
-    <Compile Include="GeneratedCode\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
