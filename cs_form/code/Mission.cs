@@ -11,9 +11,6 @@ using System.Text;
 
 public class Mission
 {
-
-    //properties
-
 	private int howmanydays
 	{
 		get;
@@ -26,63 +23,47 @@ public class Mission
 		set;
 	}
 
-	private List<String> l_genericActivity
-	{
-        //get general activity from XML
-		get;
-		set;
-	}
-
-	public virtual List<Day> l_day
+	private list<> l_genericActivity
 	{
 		get;
 		set;
 	}
 
-	public virtual List<Astronaut> l_astronaut
+	public virtual Day l_day
 	{
 		get;
 		set;
 	}
 
-	public virtual List<Place> l_place
+	public virtual IEnumerable<Astronaut> l_astronaut
 	{
 		get;
 		set;
 	}
 
-    //constructor
-
-    public Mission(int Howmanydays, DateTime BeginningDateEatrh, List<Astronaut> L_astronaut)
+	public virtual IEnumerable<Place> l_place
 	{
-        howmanydays = Howmanydays;
-        begniningDateEarth = BeginningDateEatrh;
-        l_astronaut = L_astronaut;
-        l_day = new List<Day>();
-        for (int i=0 ; i <= howmanydays; i++) {Past Day = new Past(i);}
-        //generate l_activity from XML
+		get;
+		set;
 	}
 
-    //methodes
-
-    public void add_astronaut(Astronaut astro) {l_astronaut.Add(astro);}
-
-    public void rm_astronaut(Astronaut astro) {if (l_astronaut.Contains(astro)) l_astronaut.Remove(astro);}
-
-	public virtual Day getDay(int numDay) {if (numDay<=howmanydays) {return l_day[numDay];} return null;} 
-
-	public virtual List<Place> getPlaces(Day start, Day end)
+	public virtual Day getDay(int numDay)
 	{
-        List<Place> lp = new List<Place>();
-		for (int i = start.Number; i <=end.Number; i++)
-        {
-            /* (l_day[i].l_activity.Place!=
-            {
+		throw new System.NotImplementedException();
+	}
 
-            }*/
+	public virtual void modifyDay(int numJour)
+	{
+		throw new System.NotImplementedException();
+	}
 
-        }
-        return lp;
+	public Mission(int howmanydays, DateTime beginningDateEatrh, list<Astronaut> l_astronaut)
+	{
+	}
+
+	public virtual List<Places> getPlaces(Day start, Day end)
+	{
+		throw new System.NotImplementedException();
 	}
 
 	public virtual void beginMission(DateTime CurrentEarthDate)
