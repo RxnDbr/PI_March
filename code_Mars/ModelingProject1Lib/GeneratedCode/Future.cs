@@ -9,8 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Future : Status, Day
+public class Future : Day
 {
+    public Future(int number) : base(number) { }
 	public virtual void modifyActivity(Activity newActivity)
 	{
 		throw new System.NotImplementedException();
