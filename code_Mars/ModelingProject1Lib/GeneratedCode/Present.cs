@@ -9,8 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Present : Status, Day
+public class Present :  Day
 {
+    public Present(int number) : base (number);
 	public virtual void setReport(string report)
 	{
 		throw new System.NotImplementedException();

@@ -11,22 +11,24 @@ using System.Text;
 
 public abstract class Day
 {
+    //properties
 	private string report
 	{
 		get;
 		set;
 	}
 
-	private int number
+	private int number;
+    public int Number
 	{
 		get;
-		set;
 	}
 
-	private bool outside
+
+	private bool outside;
+    public bool Outside
 	{
 		get;
-		set;
 	}
 
 	public virtual IEnumerable<Time_slot> l_timeSlot
@@ -47,12 +49,13 @@ public abstract class Day
 		set;
 	}
 
-	public virtual Status Status
-	{
-		get;
-		set;
-	}
+    //constructor
 
+    public Day(int number)
+    {
+    }
+
+    //methodes
 	public virtual int getNumber()
 	{
 		throw new System.NotImplementedException();
@@ -63,9 +66,6 @@ public abstract class Day
 		throw new System.NotImplementedException();
 	}
 
-	public Day(int number)
-	{
-	}
 
 	public virtual void display_schedule()
 	{

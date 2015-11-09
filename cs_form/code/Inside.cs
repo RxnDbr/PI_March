@@ -11,11 +11,7 @@ using System.Text;
 
 public class Inside : Activity
 {
-	public virtual string typeOfExploration
-	{
-		get;
-		set;
-	}
+
 
 }
 

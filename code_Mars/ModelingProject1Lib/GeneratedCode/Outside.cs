@@ -11,11 +11,12 @@ using System.Text;
 
 public class Outside : Activity
 {
-	public override Place Place
-	{
-		get;
-		set;
-	}
+    public Outside(string type, Place place) : base(type)
+    {
+        Place = place;
+    }
+
+
 
 }
 

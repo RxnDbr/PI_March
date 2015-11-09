@@ -29,7 +29,7 @@ public abstract class Activity
 		set;
 	}
 
-	public virtual Place Place
+	public Place Place
 	{
 		get;
 		set;
@@ -49,6 +49,8 @@ public abstract class Activity
 
 	public Activity(string type)
 	{
+        //choose the place in a list / with the map. If it's not there, create it
+        Place = new Place(0.0, 0.0, "base");
 	}
 
 }

@@ -11,49 +11,33 @@ using System.Text;
 
 public abstract class Day
 {
-	private string report
-	{
-		get;
-		set;
-	}
+    //properties
+	private string report;
+    public string Report { get; set; }
 
-	private int number
-	{
-		get;
-		set;
-	}
+	private int number;
+    public int Number { get; }
 
-	private bool outside
-	{
-		get;
-		set;
-	}
 
-	public virtual IEnumerable<Time_slot> l_timeSlot
-	{
-		get;
-		set;
-	}
+	private bool outside;
+    public bool Outside { get; set; }
 
-	public virtual IEnumerable<Activity> l_activity
-	{
-		get;
-		set;
-	}
 
-	public virtual IEnumerable<TimeUnit> l_tu
-	{
-		get;
-		set;
-	}
+	public virtual List<Activity> l_activity { get; set; }
 
-	public virtual Status Status
-	{
-		get;
-		set;
-	}
+    //constructor
 
-	public virtual int getNumber()
+    public Day(int number)
+    {
+        for (int i = 0; i < 148; i++)
+        {
+            //to adapt with schedule 
+            l_activity[i] = new Inside();
+        }
+    }
+
+    //methodes
+    public virtual int getNumber()
 	{
 		throw new System.NotImplementedException();
 	}
@@ -63,9 +47,6 @@ public abstract class Day
 		throw new System.NotImplementedException();
 	}
 
-	public Day(int number)
-	{
-	}
 
 	public virtual void display_schedule()
 	{
