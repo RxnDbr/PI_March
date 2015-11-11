@@ -45,6 +45,7 @@
     <Compile Include="GeneratedCode\Day.cs" />
     <Compile Include="GeneratedCode\Future.cs" />
     <Compile Include="GeneratedCode\Inside.cs" />
+    <Compile Include="GeneratedCode\main.cs" />
     <Compile Include="GeneratedCode\Mission.cs" />
     <Compile Include="GeneratedCode\Outside.cs" />
     <Compile Include="GeneratedCode\Past.cs" />

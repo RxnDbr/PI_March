@@ -54,6 +54,7 @@ public class Mission
         l_day = new List<Day>();
         for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i);}
         //generate l_activity from XML
+        l_place = new List<Place>();
 	}
 
     //methodes
@@ -75,22 +76,27 @@ public class Mission
 	public List<Place> getPlaces(Day start, Day end)
 	{
         List<Place> lp = new List<Place>();
-		for (int i = start.Number; i <=end.Number; i++)
+        for (int i = start.Number; i <= end.Number; i++)
         {
-            /* (l_day[i].l_activity.Place!=
+            if (l_day[i].Outside)
             {
-
-            }*/
-
+                foreach (Outside out_act in l_day[i].l_activity) { lp.Add(out_act.Place); }
+            }
         }
         return lp;
 	}
 
+    //si ne rentre aucune valeur, alors prend du début à la fin
+    //If getPlace is called without any parameters , process from the beginning of the mission untill the end
+    public List<Place> getPlaces() { return getPlaces(l_day[0], l_day[howmanydays - 1]); }
+
 	public void startMission(DateTime CurrentEarthDate)
 	{
-        beginningDateEarth = DateTime.Now;
+        //beginningDateEarth = DateTime.Now;
+        if (beginningDateEarth == null) { beginningDateEarth = CurrentEarthDate; }
+        int gap = CurrentEarthDate.Day - beginningDateEarth.Day;
         beginMission = true;
-        changeDayStatus(l_day[0], "future", "present");
+        for (int i = 0; i <= gap; i++) { changeDayStatus(l_day[i], "future", "present"); }
 	}
 
     public void changeDayStatus(Day d, string from, string to)
@@ -117,12 +123,11 @@ public class Mission
 
     }
 
-
-
     public void addActivity (string act)
     {
         l_genericActivity.Add(act);
         //le mettre dans ke xml
+
     }
 
 }
