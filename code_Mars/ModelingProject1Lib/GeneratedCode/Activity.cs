@@ -11,43 +11,25 @@ using System.Text;
 
 public abstract class Activity
 {
-	public virtual string description
-	{
-		get;
-		set;
-	}
+    private string description;
+	public  string description {get; set; }
 
-	public virtual string type
-	{
-		get;
-		set;
-	}
+    private string type;
+	public string Type { get; set; }
 
-	public virtual IEnumerable<Astronaut> l_astronaut
-	{
-		get;
-		set;
-	}
+    private List<Astronaut> l_astronaut;
+	public List<Astronaut> L_astronaut{ get;set;}
 
-	public Place Place
-	{
-		get;
-		set;
-	}
+    private Place place;
+	public Place Place{get;set;} 
 
-	public virtual TimeUnit End
-	{
-		get;
-		set;
-	}
+    private int start;
+	public int Start{get;set;}
 
-	public virtual TimeUnit Start
-	{
-		get;
-		set;
-	}
+    private int end;
+	public int End{get;set;}
 
-	public Activity(string type = "private")
+	public Activity(int start, int end, string type = "private")
 	{
         //choose the place in a list / with the map. If it's not there, create it
         Place = new Place(0.0, 0.0, "base");

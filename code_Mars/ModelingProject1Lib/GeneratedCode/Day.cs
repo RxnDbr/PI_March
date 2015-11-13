@@ -23,7 +23,8 @@ public abstract class Day
     public bool Outside { get; set; }
 
 
-	public virtual List<Activity> l_activity { get; set; }
+	private List<Activity> l_activity;
+    public List<Activity> L_activity { get; }
 
     //constructor
 
@@ -37,25 +38,35 @@ public abstract class Day
     }
 
     //methodes
-    public virtual int getNumber()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public virtual bool getOutside()
-	{
-		throw new System.NotImplementedException();
-	}
-
 
 	public virtual void display_schedule()
 	{
 		throw new System.NotImplementedException();
 	}
 
-	public void modifyActivity(Activity newActivity)
+    //don't mind what you remove
+    public void addActivity(Activity newActivity)
+    {
+        for (int i = newActivity.Start; i <= newActivity.End; i++)
+        {
+            l_activity[i] = newActivity;
+        }
+    }
+
+	public void rmActivity(Activity prevActivity)
 	{
-		throw new System.NotImplementedException();
+        foreach (Activity act in l_activity)
+        {
+            if (act.Equals(prevActivity))
+            {
+                Activity newActivity = new Inside(prevActivity.Start, prevActivity.End);
+                addActivity(newActivity);
+            }
+            else
+            {
+                //message erreur
+            }
+        }
 	}
 
 }
