@@ -46,27 +46,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factivite.cs" />
+    <Compile Include="Factivite.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Factivite.designer.cs">
       <DependentUpon>Factivite.cs</DependentUpon>
     </Compile>
-    <Compile Include="FActivityEdition.cs" />
+    <Compile Include="FActivityEdition.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FActivityEdition.designer.cs">
       <DependentUpon>FActivityEdition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fcalendrier.cs" />
+    <Compile Include="Fcalendrier.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Fcalendrier.designer.cs">
       <DependentUpon>Fcalendrier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fcontainer.cs" />
+    <Compile Include="Fcontainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Fcontainer.designer.cs">
       <DependentUpon>Fcontainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fexploration.cs" />
+    <Compile Include="Fexploration.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Fexploration.designer.cs">
       <DependentUpon>Fexploration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Finitialization.cs" />
+    <Compile Include="Finitialization.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Finitialization.designer.cs">
       <DependentUpon>Finitialization.cs</DependentUpon>
     </Compile>
@@ -76,7 +88,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fresearch.cs" />
+    <Compile Include="Fresearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Fresearch.designer.cs">
       <DependentUpon>Fresearch.cs</DependentUpon>
     </Compile>
