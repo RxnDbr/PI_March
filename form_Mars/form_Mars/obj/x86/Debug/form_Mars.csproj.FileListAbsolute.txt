@@ -12,3 +12,6 @@ H:\2A\GenieLog\PI_March\form_Mars\form_Mars\obj\x86\Debug\form_Mars.Properties.R
 H:\2A\GenieLog\PI_March\form_Mars\form_Mars\obj\x86\Debug\form_Mars.csproj.GenerateResource.Cache
 H:\2A\GenieLog\PI_March\form_Mars\form_Mars\obj\x86\Debug\form_Mars.exe
 H:\2A\GenieLog\PI_March\form_Mars\form_Mars\obj\x86\Debug\form_Mars.pdb
+H:\COURS\Info\2A\Proj mars\MARS\form_Mars\form_Mars\bin\Debug\form_Mars.exe.config
+H:\COURS\Info\2A\Proj mars\MARS\form_Mars\form_Mars\obj\x86\Debug\form_Mars.exe
+H:\COURS\Info\2A\Proj mars\MARS\form_Mars\form_Mars\obj\x86\Debug\form_Mars.pdb
