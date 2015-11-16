@@ -26,25 +26,23 @@ public abstract class Day
 	private List<Activity> l_activity;
     public List<Activity> L_activity { get { return l_activity; } }
 
-    private int hq_x;
-    public int Hq_x { get { return hq_x; } }
+    private int[] click_hq;
+    public int[] Click_hq { get { return click_hq; } }
 
-    private int hq_y;
-    public int Hq_y { get { return hq_y; } }
-
+    private Place map_hq;
+    public Place Map_hq { get { return map_hq; } }
 
 
     //constructor
 
-    public Day(int _number, int _hq_x, int _hq_y)
+    public Day(int _number, Place map_hq, int[] _click_hq)
     {
         number = _number;
-        hq_x = _hq_x;
-        hq_y = _hq_y;
+        click_hq = _click_hq;
         for (int i = 0; i < 147; i++) //24*6+4 -1 because no activity at 24:40
         {
             //create default activity
-            l_activity[i] = new Inside(i, i+1, hq_x, _hq_y);
+            l_activity[i] = new Inside(i, i+1, map_hq);
         }
     }
 
@@ -67,7 +65,7 @@ public abstract class Day
             if (act.Equals(prevActivity))
             {
                 //replace the remove activity by the default one which is private at the hq
-                Activity newActivity = new Inside(prevActivity.Start, prevActivity.End, hq);
+                Activity newActivity = new Inside(prevActivity.Start, prevActivity.End, map_hq);
                 addActivity(newActivity);
             }
             else

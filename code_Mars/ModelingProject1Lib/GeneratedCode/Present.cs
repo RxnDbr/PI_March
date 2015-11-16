@@ -11,7 +11,7 @@ using System.Text;
 
 public class Present :  Day
 {
-    public Present(int _number, int _hq_x, int _hq_y) : base(_number, _hq_x, _hq_y) { }
+    public Present(int _number, Place _map_hq,  int[] _hq) : base(_number, _map_hq, _hq) { }
 	public virtual void setReport(string report)
 	{
 		throw new System.NotImplementedException();

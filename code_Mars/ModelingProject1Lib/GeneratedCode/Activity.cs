@@ -24,12 +24,12 @@ public abstract class Activity
     public Place Place { get { return place; } set { place = value; } } 
 
     private int start;
-    public int Start { get { return start; } set{start = value} }
+    public int Start { get { return start; } set { start = value; } }
 
     private int end;
     public int End { get { return end; } set { end = value; } }
 
-	public Activity(int _start, int _end, Place _place, int _hq_x, int _hq_y, string _type = "private")
+	public Activity(int _start, int _end, Place _place, string _type = "private")
 	{
         //choose the place in a list / with the map. If it's not there, create it
         start = _start;

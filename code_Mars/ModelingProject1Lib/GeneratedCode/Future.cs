@@ -11,7 +11,7 @@ using System.Text;
 
 public class Future : Day
 {
-    public Future(int _number, int _hq_x, int _hq_y) : base(_number, _hq_x, _hq_y) { }
+    public Future(int _number, Place _map_hq, int[] _hq) : base(_number, _map_hq, _hq) { }
 	public virtual void modifyActivity(Activity newActivity)
 	{
 		throw new System.NotImplementedException();

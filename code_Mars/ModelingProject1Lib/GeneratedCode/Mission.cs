@@ -31,11 +31,11 @@ public class Mission
         }
 	}
 
-    private int hq_x;
-    public int Hq_x { get { return hq_x; } }
+    private int[] click_hq;
+    public int[] click_Hq { get { return click_hq; } }
 
-    private int hq_y;
-    public int Hq_y { get { return hq_y; } }
+    private Place map_hq;
+    public Place map_Hq { get { return map_hq; } }
 
 	private List<String> l_genericActivity ;
     public List<String> L_genericActivity { get { return l_genericActivity; } } //get general activity from XML
@@ -57,20 +57,16 @@ public class Mission
         howmanydays = _howmanydays;
         beginMission = false;
         l_astronaut = _l_astronaut;
-        hq_x = _hq_x;
-        hq_y = _hq_y;
+        click_hq = new int[]{_hq_x, _hq_y};
+        map_hq = new Place(0.0, 0.0, "HQ", click_hq);
         l_day = new List<Day>();
-        for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i, hq_x, hq_y);}
+        for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i, map_hq, click_hq);}
         //generate l_activity from XML
         l_place = new List<Place>();
 	}
 
     //methodes
 
-    public void setHQ(int click_x = 700, int click_y = 100)
-    {
-        
-    }
 
     public void add_astronaut(Astronaut astro)
     {
@@ -114,22 +110,22 @@ public class Mission
 
     public void changeDayStatus(Day d, string from, string to)
     {
-        Day tmp = d;
         switch (to)
         {
             case "past":
-                l_day[d.Number] = new Past(d.Number);
+                l_day[d.Number] = new Past(d.Number, d.Map_hq, d.Click_hq);
                 break;
             case "present":
-                l_day[d.Number] = new Present(d.Number);
+                l_day[d.Number] = new Present(d.Number, d.Map_hq, d.Click_hq);
                 break;
             default: //case "future":
-                l_day[d.Number] = new Future(d.Number);
+                l_day[d.Number] = new Future(d.Number, d.Map_hq, d.Click_hq);
                 break;
         }
 
         l_day[d.Number].Report = d.Report;
         l_day[d.Number].Outside = d.Outside;
+
 
 
         //(d.Number, d.Report, ;
