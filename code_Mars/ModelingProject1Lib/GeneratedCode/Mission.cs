@@ -18,7 +18,7 @@ public class Mission
     public int HomanyDays { get {return howmanydays;}}
 
     private bool beginMission;
-    public bool BeginMission { get; }
+    public bool BeginMission { get {return beginMission;} }
 
 	private DateTime beginningDateEarth;
     public DateTime BeginningDateEarth
@@ -30,6 +30,12 @@ public class Mission
             if (beginningDateEarth<now) {beginningDateEarth = value;};
         }
 	}
+
+    private int hq_x;
+    public int Hq_x { get { return hq_x; } }
+
+    private int hq_y;
+    public int Hq_y { get { return hq_y; } }
 
 	private List<String> l_genericActivity ;
     public List<String> L_genericActivity { get { return l_genericActivity; } } //get general activity from XML
@@ -46,18 +52,25 @@ public class Mission
 
     //constructor
 
-    public Mission(int _howmanydays, List<Astronaut> _l_astronaut)
+    public Mission(int _howmanydays, List<Astronaut> _l_astronaut, int _hq_x = 700, int _hq_y = 1000)
 	{
         howmanydays = _howmanydays;
         beginMission = false;
         l_astronaut = _l_astronaut;
+        hq_x = _hq_x;
+        hq_y = _hq_y;
         l_day = new List<Day>();
-        for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i);}
+        for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i, hq_x, hq_y);}
         //generate l_activity from XML
         l_place = new List<Place>();
 	}
 
     //methodes
+
+    public void setHQ(int click_x = 700, int click_y = 100)
+    {
+        
+    }
 
     public void add_astronaut(Astronaut astro)
     {

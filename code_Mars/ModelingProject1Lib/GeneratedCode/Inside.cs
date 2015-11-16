@@ -11,7 +11,8 @@ using System.Text;
 
 public class Inside : Activity
 {
-
+    public Inside(int _start, int _end string _type = "private") : base(_start, _end, new Place(0.0,0.0,"HQ", _hq_x, _hq_y), _type) { }
+    
 
 }
 

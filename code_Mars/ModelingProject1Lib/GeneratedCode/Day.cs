@@ -13,36 +13,43 @@ public abstract class Day
 {
     //properties
 	private string report;
-    public string Report { get; set; }
+    public string Report { get { return report; } set { report = value; } }
 
 	private int number;
-    public int Number { get; }
+    public int Number { get { return number; } }
 
 
 	private bool outside;
-    public bool Outside { get; set; }
+    public bool Outside { get { return outside; } set { outside = value; } }
 
 
 	private List<Activity> l_activity;
-    public List<Activity> L_activity { get; }
+    public List<Activity> L_activity { get { return l_activity; } }
+
+    private int hq_x;
+    public int Hq_x { get { return hq_x; } }
+
+    private int hq_y;
+    public int Hq_y { get { return hq_y; } }
+
+
 
     //constructor
 
-    public Day(int number)
+    public Day(int _number, int _hq_x, int _hq_y)
     {
-        for (int i = 0; i < 148; i++)
+        number = _number;
+        hq_x = _hq_x;
+        hq_y = _hq_y;
+        for (int i = 0; i < 147; i++) //24*6+4 -1 because no activity at 24:40
         {
-            //to adapt with schedule 
-            l_activity[i] = new Inside();
+            //create default activity
+            l_activity[i] = new Inside(i, i+1, hq_x, _hq_y);
         }
     }
 
     //methodes
 
-	public virtual void display_schedule()
-	{
-		throw new System.NotImplementedException();
-	}
 
     //don't mind what you remove
     public void addActivity(Activity newActivity)
@@ -59,7 +66,8 @@ public abstract class Day
         {
             if (act.Equals(prevActivity))
             {
-                Activity newActivity = new Inside(prevActivity.Start, prevActivity.End);
+                //replace the remove activity by the default one which is private at the hq
+                Activity newActivity = new Inside(prevActivity.Start, prevActivity.End, hq);
                 addActivity(newActivity);
             }
             else
