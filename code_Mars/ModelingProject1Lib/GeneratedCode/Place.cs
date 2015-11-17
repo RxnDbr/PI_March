@@ -23,8 +23,8 @@ public class Place
     private string name;
     public string Name { get { return name; } set { name = value; } }
 
-    private int[] hq;
-    public int[] Hq{get { return hq;}}
+    private int[] base_hq;
+    public int[] Base_hq{get { return base_hq;}}
 
 
 	private List<Outside> l_outside;
@@ -32,12 +32,12 @@ public class Place
 
     //constructor
 
-	public Place(double _map_x, double _map_y, string _name, int[] _hq)
+	public Place(double _map_x, double _map_y, string _name, int[] _base_hq)
 	{
         map_x = _map_x;
         map_y = _map_y;
         name = _name;
-        hq = _hq;
+        base_hq = _base_hq;
    	}
 
     public Place(int _click_x, int _click_y, string _name )
@@ -56,7 +56,7 @@ public class Place
 
     public double convertClickToMap(int _coordonnée, bool horizontal)
     {
-        if (horizontal == true)
+        if (horizontal)
         {
             
         }

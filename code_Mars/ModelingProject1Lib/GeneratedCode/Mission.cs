@@ -60,7 +60,7 @@ public class Mission
         click_hq = new int[]{_hq_x, _hq_y};
         map_hq = new Place(0.0, 0.0, "HQ", click_hq);
         l_day = new List<Day>();
-        for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i, map_hq, click_hq);}
+        for (int i=0 ; i <= howmanydays; i++) {Future Day = new Future(i, map_hq);}
         //generate l_activity from XML
         l_place = new List<Place>();
 	}
@@ -113,22 +113,18 @@ public class Mission
         switch (to)
         {
             case "past":
-                l_day[d.Number] = new Past(d.Number, d.Map_hq, d.Click_hq);
+                l_day[d.Number] = new Past(d.Number, d.Map_hq);
                 break;
             case "present":
-                l_day[d.Number] = new Present(d.Number, d.Map_hq, d.Click_hq);
+                l_day[d.Number] = new Present(d.Number, d.Map_hq);
                 break;
             default: //case "future":
-                l_day[d.Number] = new Future(d.Number, d.Map_hq, d.Click_hq);
+                l_day[d.Number] = new Future(d.Number, d.Map_hq);
                 break;
         }
 
         l_day[d.Number].Report = d.Report;
         l_day[d.Number].Outside = d.Outside;
-
-
-
-        //(d.Number, d.Report, ;
 
     }
 

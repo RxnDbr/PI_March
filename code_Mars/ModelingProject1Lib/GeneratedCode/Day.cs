@@ -26,19 +26,15 @@ public abstract class Day
 	private List<Activity> l_activity;
     public List<Activity> L_activity { get { return l_activity; } }
 
-    private int[] click_hq;
-    public int[] Click_hq { get { return click_hq; } }
-
     private Place map_hq;
     public Place Map_hq { get { return map_hq; } }
 
 
     //constructor
 
-    public Day(int _number, Place map_hq, int[] _click_hq)
+    public Day(int _number, Place map_hq)
     {
         number = _number;
-        click_hq = _click_hq;
         for (int i = 0; i < 147; i++) //24*6+4 -1 because no activity at 24:40
         {
             //create default activity
@@ -74,6 +70,9 @@ public abstract class Day
             }
         }
 	}
+
+    public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd) { }
+    public void modifyContentActivity(Activity prevActivity) { } //add other params
 
 }
 

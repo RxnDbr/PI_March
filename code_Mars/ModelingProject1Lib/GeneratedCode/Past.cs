@@ -11,7 +11,7 @@ using System.Text;
 
 public class Past : Day
 {
-    public Past(int _number, Place _map_hq, int[] _hq) : base(_number, _map_hq, _hq) { }
+    public Past(int _number, Place _map_hq) : base(_number, _map_hq) { }
 	public virtual string getReport()
 	{
 		throw new System.NotImplementedException();
