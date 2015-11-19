@@ -36,7 +36,7 @@ namespace Mars
         public List<String> L_genericActivity { get { return l_genericActivity; } } //get general activity from XML
 
         private List<Day> l_day;
-        public List<Day> L_day { get { return L_day; } }
+        public List<Day> L_day { get { return l_day; } }
 
         private List<Astronaut> l_astronaut;
         public List<Astronaut> L_astronaut { get { return l_astronaut; } }
@@ -47,15 +47,18 @@ namespace Mars
 
         //constructor
 
-        public Mission(int _howmanydays, List<Astronaut> _l_astronaut, int _hq_x = 700, int _hq_y = 1000)
+        public Mission(int _howmanydays, int _hq_x = 700, int _hq_y = 1000)
         {
             howmanydays = _howmanydays;
             beginMission = false;
-            l_astronaut = _l_astronaut;
+            l_astronaut = new List<Astronaut>();
             click_hq = new int[] { _hq_x, _hq_y };
             map_hq = new Place(0.0, 0.0, "HQ", click_hq);
             l_day = new List<Day>();
-            for (int i = 0; i <= howmanydays; i++) { Future Day = new Future(i, map_hq); }
+            for (int i = 0; i < howmanydays; i++)
+            {
+                l_day.Insert(i, new Future(i, map_hq));
+            }
             //generate l_activity from XML
             l_place = new List<Place>();
         }

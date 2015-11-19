@@ -27,14 +27,17 @@ public abstract class Day
 
     //constructor
 
-    public Day(int _number, Place map_hq)
+    public Day(int _number, Place _map_hq)
     {
         number = _number;
+        map_hq = _map_hq;
+        l_activity = new List<Activity>();
+
         Activity defaultAct = new Inside(0, 147, map_hq);
         for (int i = 0; i <= 147; i++) //24*6+4 -1 because no activity at 24:40
         {
             //create default activity
-            l_activity[i] = defaultAct;
+            l_activity.Insert(i, defaultAct);
         }
     }
 
@@ -44,18 +47,15 @@ public abstract class Day
     //don't mind what you remove
     public void addActivity(Activity newActivity)
     {
-        for (int i = newActivity.Start; i <= newActivity.End; i++)
+        for (int i = newActivity.Start; i < newActivity.End; i++)
         {
-            l_activity[i] = newActivity;
+            l_activity[i] = newActivity; 
         }
     }
 
     public void rmActivity(Activity prevActivity)
     {
-        if (l_activity.Contains(prevActivity))
-        {
-            rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
-        }
+        rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
     }
 
     public void rmActivity(Activity prevActivity, int start, int end)
@@ -92,6 +92,8 @@ public abstract class Day
         prevActivity.End = newEnd;
 
         //addActivity(prevActivity); is this useful ? 
+
+        //TODO : change each activity hours. 
 
     }
 
