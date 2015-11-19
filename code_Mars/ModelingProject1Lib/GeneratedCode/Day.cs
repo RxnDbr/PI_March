@@ -35,10 +35,11 @@ public abstract class Day
     public Day(int _number, Place map_hq)
     {
         number = _number;
-        for (int i = 0; i < 147; i++) //24*6+4 -1 because no activity at 24:40
+        Activity defaultAct = new Inside(0, 147, map_hq);
+        for (int i = 0; i <= 147; i++) //24*6+4 -1 because no activity at 24:40
         {
             //create default activity
-            l_activity[i] = new Inside(i, i+1, map_hq);
+            l_activity[i] = defaultAct;
         }
     }
 
@@ -78,12 +79,16 @@ public abstract class Day
 
     public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd) 
     {
-        if (prevActivity.Start < newStart)
+        if ((prevActivity.Start < newStart) && (newEnd < prevActivity.End))
+        {
+            //error message
+        }
+        else if (prevActivity.Start < newStart)
         {
             rmActivity(prevActivity, prevActivity.Start, newStart);
         }
 
-        if (newEnd < prevActivity.End)
+        else if (newEnd < prevActivity.End)
         {
             rmActivity(prevActivity, newEnd, prevActivity.End);
         }
@@ -91,9 +96,10 @@ public abstract class Day
         prevActivity.Start = newStart;
         prevActivity.End = newEnd;
 
-        addActivity(prevActivity);
+        //addActivity(prevActivity); is this useful ? 
 
     }
+
     public void modifyContentActivity(Activity prevActivity, string newDescription) 
     {
         prevActivity.Description = newDescription;

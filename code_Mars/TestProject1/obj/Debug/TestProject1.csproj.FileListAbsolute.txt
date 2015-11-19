@@ -1,0 +1,7 @@
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\bin\Debug\TestProject1.dll
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\bin\Debug\TestProject1.pdb
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\bin\Debug\ModelingProject1Lib.dll
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\bin\Debug\ModelingProject1Lib.pdb
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\obj\Debug\TestProject1.csprojResolveAssemblyReference.cache
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\obj\Debug\TestProject1.dll
+C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestProject1\obj\Debug\TestProject1.pdb

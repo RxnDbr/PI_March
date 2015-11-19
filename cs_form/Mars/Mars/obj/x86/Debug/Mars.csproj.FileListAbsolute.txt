@@ -1,0 +1,6 @@
+C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\bin\Debug\Mars.exe
+C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\bin\Debug\Mars.pdb
+C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\obj\x86\Debug\Mars.Properties.Resources.resources
+C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\obj\x86\Debug\Mars.csproj.GenerateResource.Cache
+C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\obj\x86\Debug\Mars.exe
+C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\obj\x86\Debug\Mars.pdb

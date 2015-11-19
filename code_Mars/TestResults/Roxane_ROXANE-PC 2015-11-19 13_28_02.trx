@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="ddd8ed04-4472-49c7-b439-b4723ba68dc6" name="Roxane@ROXANE-PC 2015-11-19 13:28:02" runUser="Roxane-PC\Roxane" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="9954812e-20c4-43e2-ba2c-a576be6eab91">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="C:\Users\Roxane\Documents\PI_Mars\code_Mars\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Roxane_ROXANE-PC 2015-11-19 13_28_02">
+      <DeploymentItem filename="C:\Users\Roxane\Documents\PI_Mars\code_Mars\ModelingProject1Lib\bin\Debug\ModelingProject1Lib.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-11-19T13:28:02.6350367+01:00" queuing="2015-11-19T13:28:07.3722063+01:00" start="2015-11-19T13:28:07.5419002+01:00" finish="2015-11-19T13:31:47.5412388+01:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="ROXANE-PC" outcome="Error" timestamp="2015-11-19T13:31:47.5402410+01:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="modifyHoursActivityTest" storage="c:\users\roxane\documents\pi_mars\code_mars\testproject1\bin\debug\testproject1.dll" id="dacc5d46-b88b-fb3d-ed37-e2b2e8d20ffb">
+      <Execution id="8253f7a3-dc2d-4823-9d90-e632a96a8c13" />
+      <TestMethod codeBase="C:/Users/Roxane/Documents/PI_Mars/code_Mars/TestProject1/bin/Debug/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.DayTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="modifyHoursActivityTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="dacc5d46-b88b-fb3d-ed37-e2b2e8d20ffb" executionId="8253f7a3-dc2d-4823-9d90-e632a96a8c13" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="8253f7a3-dc2d-4823-9d90-e632a96a8c13" testId="dacc5d46-b88b-fb3d-ed37-e2b2e8d20ffb" testName="modifyHoursActivityTest" computerName="ROXANE-PC" duration="00:03:39.8982715" startTime="2015-11-19T13:28:07.6429673+01:00" endTime="2015-11-19T13:31:47.5412388+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8253f7a3-dc2d-4823-9d90-e632a96a8c13">
+    </UnitTestResult>
+  </Results>
+</TestRun>
