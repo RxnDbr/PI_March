@@ -15,7 +15,7 @@ public abstract class Activity
     public string Description { get { return description; } set { description = value; } }
 
     private string type;
-    public string Type { get { return type; } set { type = value; } }
+    public string Type { get { return type; } }
 
     private List<Astronaut> l_astronaut;
     public List<Astronaut> L_astronaut { get { return l_astronaut; } set { l_astronaut = value; } }
@@ -37,6 +37,16 @@ public abstract class Activity
         place = _place;
         type = _type;
 	}
+
+    public void addDescription(string _description)
+    {
+        description = _description;
+    }
+
+    public void addAstronaut(Astronaut _astronaut)
+    {
+        l_astronaut.Add(_astronaut);
+    }
 
 }
 

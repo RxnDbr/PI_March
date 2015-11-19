@@ -56,23 +56,54 @@ public abstract class Day
 
 	public void rmActivity(Activity prevActivity)
 	{
-        foreach (Activity act in l_activity)
+        if (l_activity.Contains(prevActivity))
         {
-            if (act.Equals(prevActivity))
-            {
-                //replace the remove activity by the default one which is private at the hq
-                Activity newActivity = new Inside(prevActivity.Start, prevActivity.End, map_hq);
-                addActivity(newActivity);
-            }
-            else
-            {
-                //message erreur
-            }
+            rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
         }
-	}
+    }
 
-    public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd) { }
-    public void modifyContentActivity(Activity prevActivity) { } //add other params
+    public void rmActivity(Activity prevActivity, int start , int end)
+    {
+        if ((l_activity.Contains(prevActivity)) && (prevActivity.Start <= start) && (prevActivity.End >= end))
+        {
+            //replace the remove activity by the default one which is private at the hq
+            Activity newActivity = new Inside(start, end, map_hq);
+            addActivity(newActivity);
+        }
+        else
+        {
+            //message erreur
+        }
+    }
+
+    public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd) 
+    {
+        if (prevActivity.Start < newStart)
+        {
+            rmActivity(prevActivity, prevActivity.Start, newStart);
+        }
+
+        if (newEnd < prevActivity.End)
+        {
+            rmActivity(prevActivity, newEnd, prevActivity.End);
+        }
+
+        prevActivity.Start = newStart;
+        prevActivity.End = newEnd;
+
+        addActivity(prevActivity);
+
+    }
+    public void modifyContentActivity(Activity prevActivity, string newDescription) 
+    {
+        prevActivity.Description = newDescription;
+    }
+
+    public void modifyContentActivity(Activity prevActivity, Place newPlace)
+    {
+        prevActivity.Place = newPlace;
+    }
+ 
 
 }
 

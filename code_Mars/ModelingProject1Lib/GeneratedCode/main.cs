@@ -21,5 +21,7 @@ namespace ModelingProject1Lib.GeneratedCode
 
         //sinon
         //Créer une mission
+
+        //XML
     }
 }
