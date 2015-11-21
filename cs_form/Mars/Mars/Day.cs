@@ -44,23 +44,28 @@ public abstract class Day
     //methodes
 
 
-    //don't mind what you remove
     public void addActivity(Activity newActivity)
     {
+        //add an activity and remove the previous one
         for (int i = newActivity.Start; i < newActivity.End; i++)
         {
             l_activity[i] = newActivity; 
         }
-        sortActivityList();
+        sortActivityList(); 
     }
 
+
+    //remove an activity and replace it by an activity by default
+    //it is possible to remove only a part of the activity => when you make it shorter for instance
     public void rmActivity(Activity prevActivity)
-    {
+    {       
         rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
     }
 
     public void rmActivity(Activity prevActivity, int start, int end)
     {
+        //has to check that the activity is on the list
+        //has to check that the part of the activity to remove is included in activity
         if ((l_activity.Contains(prevActivity)) && (prevActivity.Start <= start) && (prevActivity.End >= end))
         {
             //replace the remove activity by the default one which is private at the hq
@@ -69,22 +74,19 @@ public abstract class Day
         }
         else
         {
-            //message erreur
+            //error message
         }
     }
 
     public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd)
     {
-        if ((prevActivity.Start < newStart) && (newEnd < prevActivity.End))
-        {
-            //error message
-        }
-        else if (prevActivity.Start < newStart)
+        //if the new hours are included in the previous ones, remove the gap hours
+        if (prevActivity.Start < newStart)
         {
             rmActivity(prevActivity, prevActivity.Start, newStart);
         }
 
-        else if (newEnd < prevActivity.End)
+        if (newEnd < prevActivity.End)
         {
             rmActivity(prevActivity, newEnd, prevActivity.End);
         }
@@ -92,12 +94,15 @@ public abstract class Day
         prevActivity.Start = newStart;
         prevActivity.End = newEnd;
 
-        sortActivityList();
-
-        //addActivity(prevActivity); is this useful ? 
-
-        //TODO : change each activity hours. 
-
+        if (newStart < prevActivity.Start || prevActivity.End < newEnd)
+        {
+            //sortActivity is in addActivity, no need to precess twice)
+            addActivity(prevActivity);
+        }
+        else
+        {
+            sortActivityList();
+        }
     }
 
     public void modifyContentActivity(Activity prevActivity, string newDescription)
@@ -112,9 +117,10 @@ public abstract class Day
 
     public void sortActivityList()
     {
-        for (int i = 0; i < 147; i++)
+        //Stop at Count -1 because of i+1
+        for (int i = 0; i < l_activity.Count -1 ; i++)
         {
-            //if two consecutive activity are different
+            //if two consecutive activities are different
             if (!(l_activity[i].Equals(l_activity[i + 1])))
             {
                 //but have the same type and place, it is considered as being the same activity
@@ -122,6 +128,7 @@ public abstract class Day
                 if ((l_activity[i].Type.Equals(l_activity[i + 1].Type))
                     && (l_activity[i].Place.Equals(l_activity[i + 1].Place)))
                 {
+                    //extend the end and merge descriptions before merging the entire activity
                     l_activity[i].End = l_activity[i + 1].End;
                     l_activity[i].Description = l_activity[i].Description + l_activity[i + 1].Description; //join the both description
                     l_activity[i + 1] = l_activity[i];
@@ -130,7 +137,7 @@ public abstract class Day
                 else
                 {
                     //We have to create a new activity instead of updating the previous one
-                    //We check that the ativity is not already rescheduled not to process twice
+                    //We check that the current ativity is not already rescheduled not to process twice
 
                     if (l_activity[i].End!=i+1)
                     {
@@ -142,7 +149,7 @@ public abstract class Day
                             l_activity[j] = l_activity[i];
                         }
                     }
-                    //We check that the ativity is not already rescheduled not to process twice
+                    //We check that the next ativity is not already rescheduled not to process twice
                     if (l_activity[i + 1].Start != i + 1)
                     {
                         if (l_activity[i + 1] is Inside) { l_activity[i + 1] = new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
@@ -159,8 +166,6 @@ public abstract class Day
         }
 
     }
-
-
 }
 
 
