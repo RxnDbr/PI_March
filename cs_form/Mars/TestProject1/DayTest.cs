@@ -95,5 +95,44 @@ namespace TestProject1
             
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
+
+        /// <summary>
+        ///A test for sortActivityList
+        ///</summary>
+        [TestMethod()]
+        public void sortActivityListTest()
+        {
+            Day target = CreateDay(); // TODO: Initialize to an appropriate value
+            target.sortActivityList();
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
+
+        /// <summary>
+        ///A test for addActivity
+        ///</summary>
+        [TestMethod()]
+        public void addActivityTest()
+        {
+            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value
+            Day expectedDay = CreateDay();
+
+            int startActivity = 5;
+            int endActivity = 9;
+
+            Activity defaultActivity1 = new Inside(0, startActivity, targetDay.Map_hq);
+            Activity newActivity = new Inside(startActivity, endActivity, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            Activity defaultActivity2 = new Inside(endActivity, expectedDay.L_activity.Count-1, targetDay.Map_hq);
+
+            List<Activity> expected = expectedDay.L_activity;
+            int i;
+            for (i=0; i<startActivity; i++) {expected[i] = defaultActivity1; }
+            for (i = startActivity; i < endActivity; i++) { expected[i] = newActivity; }
+            for (i=endActivity; i<expectedDay.L_activity.Count; i++){expected[i] = defaultActivity2;}
+
+
+            targetDay.addActivity(newActivity);
+
+            CollectionAssert.AreEqual(expected, targetDay.L_activity);
+        }
     }   
 }

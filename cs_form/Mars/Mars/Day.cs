@@ -51,6 +51,7 @@ public abstract class Day
         {
             l_activity[i] = newActivity; 
         }
+        sortActivityList();
     }
 
     public void rmActivity(Activity prevActivity)
@@ -91,6 +92,8 @@ public abstract class Day
         prevActivity.Start = newStart;
         prevActivity.End = newEnd;
 
+        sortActivityList();
+
         //addActivity(prevActivity); is this useful ? 
 
         //TODO : change each activity hours. 
@@ -105,6 +108,56 @@ public abstract class Day
     public void modifyContentActivity(Activity prevActivity, Place newPlace)
     {
         prevActivity.Place = newPlace;
+    }
+
+    public void sortActivityList()
+    {
+        for (int i = 0; i < 147; i++)
+        {
+            //if two consecutive activity are different
+            if (!(l_activity[i].Equals(l_activity[i + 1])))
+            {
+                //but have the same type and place, it is considered as being the same activity
+                // So we merge the both activities
+                if ((l_activity[i].Type.Equals(l_activity[i + 1].Type))
+                    && (l_activity[i].Place.Equals(l_activity[i + 1].Place)))
+                {
+                    l_activity[i].End = l_activity[i + 1].End;
+                    l_activity[i].Description = l_activity[i].Description + l_activity[i + 1].Description; //join the both description
+                    l_activity[i + 1] = l_activity[i];
+                }
+                //elsewise, we reschedule the previous and forward activity activities
+                else
+                {
+                    //We have to create a new activity instead of updating the previous one
+                    //We check that the ativity is not already rescheduled not to process twice
+
+                    if (l_activity[i].End!=i+1)
+                    {
+                        if (l_activity[i] is Inside) { l_activity[i] = new Inside(l_activity[i].Start, i + 1, l_activity[i].Place, l_activity[i].Type); }
+                        else { new Inside(l_activity[i].Start, i + 1, l_activity[i].Place, l_activity[i].Type); }
+
+                        for (int j = l_activity[i].Start; j < l_activity[i].End; j++ )
+                        {
+                            l_activity[j] = l_activity[i];
+                        }
+                    }
+                    //We check that the ativity is not already rescheduled not to process twice
+                    if (l_activity[i + 1].Start != i + 1)
+                    {
+                        if (l_activity[i + 1] is Inside) { l_activity[i + 1] = new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
+                        else { new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
+
+                        for (int j = l_activity[i+1].Start; j<l_activity[i+1].End; j++)
+                        {
+                            l_activity[j] = l_activity[i + 1];
+                        }
+                    }
+
+                }
+            }
+        }
+
     }
 
 
