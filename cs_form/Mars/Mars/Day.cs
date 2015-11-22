@@ -51,7 +51,7 @@ public abstract class Day
         {
             l_activity[i] = newActivity; 
         }
-        sortActivityList(); 
+        //sortActivityList(); 
     }
 
 
@@ -66,7 +66,7 @@ public abstract class Day
     {
         //has to check that the activity is on the list
         //has to check that the part of the activity to remove is included in activity
-        if ((l_activity.Contains(prevActivity)) && (prevActivity.Start <= start) && (prevActivity.End >= end))
+        if ((l_activity.Contains(prevActivity)))// && (prevActivity.Start <= start) && (prevActivity.End >= end))
         {
             //replace the remove activity by the default one which is private at the hq
             Activity newActivity = new Inside(start, end, map_hq);
@@ -80,29 +80,28 @@ public abstract class Day
 
     public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd)
     {
-        //if the new hours are included in the previous ones, remove the gap hours
-        if (prevActivity.Start < newStart)
-        {
-            rmActivity(prevActivity, prevActivity.Start, newStart);
-        }
-
-        if (newEnd < prevActivity.End)
-        {
-            rmActivity(prevActivity, newEnd, prevActivity.End);
-        }
+        int prevStart = prevActivity.Start;
+        int prevEnd = prevActivity.End;
 
         prevActivity.Start = newStart;
         prevActivity.End = newEnd;
 
-        if (newStart < prevActivity.Start || prevActivity.End < newEnd)
+        addActivity(prevActivity);
+        
+        //if the new hours are included in the previous ones, remove the gap hours
+        if (prevStart < newStart)
         {
-            //sortActivity is in addActivity, no need to precess twice)
-            addActivity(prevActivity);
+            rmActivity(prevActivity, prevStart, Math.Min(newStart, prevEnd));
         }
-        else
+
+        if (newEnd < prevEnd)
         {
-            sortActivityList();
+            rmActivity(prevActivity, Math.Max(newEnd, prevStart), prevEnd);
         }
+
+        sortActivityList();
+
+
     }
 
     public void modifyContentActivity(Activity prevActivity, string newDescription)
@@ -139,12 +138,12 @@ public abstract class Day
                     //We have to create a new activity instead of updating the previous one
                     //We check that the current ativity is not already rescheduled not to process twice
 
-                    if (l_activity[i].End!=i+1)
+                    if (l_activity[i].End != i + 1)
                     {
                         if (l_activity[i] is Inside) { l_activity[i] = new Inside(l_activity[i].Start, i + 1, l_activity[i].Place, l_activity[i].Type); }
                         else { new Inside(l_activity[i].Start, i + 1, l_activity[i].Place, l_activity[i].Type); }
 
-                        for (int j = l_activity[i].Start; j < l_activity[i].End; j++ )
+                        for (int j = l_activity[i].Start; j < l_activity[i].End; j++)
                         {
                             l_activity[j] = l_activity[i];
                         }
@@ -152,16 +151,19 @@ public abstract class Day
                     //We check that the next ativity is not already rescheduled not to process twice
                     if (l_activity[i + 1].Start != i + 1)
                     {
+                        //need a mean to check if we can delete or not
+                        //l_activity[i + 1] = l_activity[i];
                         if (l_activity[i + 1] is Inside) { l_activity[i + 1] = new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
                         else { new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
 
-                        for (int j = l_activity[i+1].Start; j<l_activity[i+1].End; j++)
+                        for (int j = l_activity[i + 1].Start; j < l_activity[i + 1].End; j++)
                         {
                             l_activity[j] = l_activity[i + 1];
                         }
                     }
 
                 }
+
             }
         }
 

@@ -78,22 +78,27 @@ namespace TestProject1
         [TestMethod()]
         public void modifyHoursActivityTest()
         {
-            Day target = CreateDay(); // TODO: Initialize to an appropriate value       
-            Activity prevActivity = new Inside(5,9,target.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
-            target.addActivity(prevActivity);
-            int newStart = 6; // TODO: Initialize to an appropriate value
-            int newEnd = 9; // TODO: Initialize to an appropriate value
-            target.modifyHoursActivity(prevActivity, newStart, newEnd);
+            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value       
+            Activity prevActivity = new Inside(5,9,targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            targetDay.addActivity(prevActivity);
+            int newStart = 10; // TODO: Initialize to an appropriate value
+            int newEnd = 15; // TODO: Initialize to an appropriate value
+            targetDay.modifyHoursActivity(prevActivity, newStart, newEnd);
 
-            Day test = CreateDay();
-            List<Activity> expected = test.L_activity;
-            for (int i = 6; i <= 9; i++)
-            {
-                expected[i] = new Inside(6, 9, target.Map_hq, "coucou");
-            }
-            Assert.AreEqual(expected, target.L_activity);
-            
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            Day expectedDay = CreateDay();
+            List<Activity> expected = expectedDay.L_activity;
+
+            Activity defaultActivity1 = new Inside(0, newStart, targetDay.Map_hq);
+            Activity newActivity = new Inside(newStart, prevActivity.End, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            Activity defaultActivity2 = new Inside(prevActivity.End, expectedDay.L_activity.Count - 1, targetDay.Map_hq);
+
+            int i;
+            for (i = 0; i < newStart; i++) { expected[i] = defaultActivity1; }
+            for (i = newStart; i < newEnd; i++) { expected[i] = newActivity; }
+            for (i = newEnd; i < expectedDay.L_activity.Count; i++) { expected[i] = defaultActivity2; }
+
+            bool areEqual = compareTwoActList(expected, targetDay.L_activity);
+            Assert.IsTrue(areEqual);
         }
 
         /// <summary>
@@ -132,7 +137,67 @@ namespace TestProject1
 
             targetDay.addActivity(newActivity);
 
-            CollectionAssert.AreEqual(expected, targetDay.L_activity);
+            bool areEqual = compareTwoActList(expected, targetDay.L_activity);
+            Assert.IsTrue(areEqual);
+        }
+
+        public bool compareTwoActList(List<Activity> l1, List<Activity> l2)
+        {
+            for (int i = 0; i < l1.Count; i++ )
+            {
+                //do not test Place because too complicated
+                if (!((l1[i].Start == l2[i].Start) &&
+                    (l1[i].End == l2[i].End) &&
+                    (l1[i].Type.Equals(l2[i].Type))))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        ///A test for rmActivity
+        ///</summary>
+        [TestMethod()]
+        public void rmActivityTest()
+        {
+            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value  
+            Day expectedDay = CreateDay();
+            Activity prevActivity = new Inside(5, 9, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            targetDay.addActivity(prevActivity);
+            targetDay.rmActivity(prevActivity);
+
+            bool areEqual = compareTwoActList(expectedDay.L_activity, targetDay.L_activity);
+            Assert.IsTrue(areEqual);
+
+        }
+
+        /// <summary>
+        ///A test for rmActivity
+        ///</summary>
+        [TestMethod()]
+        public void rmActivityTest1()
+        {
+            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value  
+            Day expectedDay = CreateDay();
+            Activity prevActivity = new Inside(5, 9, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            targetDay.addActivity(prevActivity);
+            int newStart = 7; // TODO: Initialize to an appropriate value
+            targetDay.rmActivity(prevActivity, prevActivity.Start , newStart);
+
+            Activity defaultActivity1 = new Inside(0, newStart, targetDay.Map_hq);
+            Activity newActivity = new Inside(newStart, prevActivity.End, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            Activity defaultActivity2 = new Inside(prevActivity.End, expectedDay.L_activity.Count - 1, targetDay.Map_hq);
+
+            List<Activity> expected = expectedDay.L_activity;
+            int i;
+            for (i = 0; i < newStart; i++) { expected[i] = defaultActivity1; }
+            for (i = newStart; i < prevActivity.End; i++) { expected[i] = newActivity; }
+            for (i = prevActivity.End; i < expectedDay.L_activity.Count; i++) { expected[i] = defaultActivity2; }
+
+            bool areEqual = compareTwoActList(expected, targetDay.L_activity);
+            Assert.IsTrue(areEqual);
         }
     }   
 }
