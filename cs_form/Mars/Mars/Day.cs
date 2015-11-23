@@ -43,7 +43,8 @@ public abstract class Day
 
     //methodes
 
-
+    //==============================================================================================
+    //Add, Remove or modify the activities list
     public void addActivity(Activity newActivity)
     {
         //add an activity and remove the previous one
@@ -57,10 +58,6 @@ public abstract class Day
 
     //remove an activity and replace it by an activity by default
     //it is possible to remove only a part of the activity => when you make it shorter for instance
-    public void rmActivity(Activity prevActivity)
-    {       
-        rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
-    }
 
     public void rmActivity(Activity prevActivity, int start, int end)
     {
@@ -76,6 +73,11 @@ public abstract class Day
         {
             //error message
         }
+    }
+
+    public void rmActivity(Activity prevActivity)
+    {
+        rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
     }
 
     public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd)
@@ -106,7 +108,7 @@ public abstract class Day
 
     public void sortActivityList()
     {
-        //this function sort a list and its activity in order them to be coherent
+        //this function sorts a list and its activities in order them to be coherent
         
         for (int i = 0; i < l_activity.Count -1 ; i++)//Stop at Count -1 because of i+1
         {
@@ -139,11 +141,10 @@ public abstract class Day
                             l_activity[j] = l_activity[i];
                         }
                     }
+
                     //We check that the next ativity is not already rescheduled not to process twice
                     if (l_activity[i + 1].Start != i + 1)
                     {
-                        //need a mean to check if we can delete or not
-                        //l_activity[i + 1] = l_activity[i];
                         if (l_activity[i + 1] is Inside) { l_activity[i + 1] = new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
                         else { new Inside(i + 1, l_activity[i + 1].End, l_activity[i + 1].Place, l_activity[i + 1].Type); }
 
@@ -152,13 +153,11 @@ public abstract class Day
                             l_activity[j] = l_activity[i + 1];
                         }
                     }
-
                 }
-
             }
         }
-
     }
+    //=======================================================================================================================================================================
 }
 
 
