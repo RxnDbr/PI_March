@@ -75,30 +75,39 @@ namespace TestProject1
         /// <summary>
         ///A test for modifyHoursActivity
         ///</summary>
-        [TestMethod()]
-        public void modifyHoursActivityTest()
+        public bool modifyHoursActivityT(int newStart, int newEnd)
         {
             Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value       
             Activity prevActivity = new Inside(5,9,targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
             targetDay.addActivity(prevActivity);
-            int newStart = 10; // TODO: Initialize to an appropriate value
-            int newEnd = 15; // TODO: Initialize to an appropriate value
             targetDay.modifyHoursActivity(prevActivity, newStart, newEnd);
 
             Day expectedDay = CreateDay();
             List<Activity> expected = expectedDay.L_activity;
 
             Activity defaultActivity1 = new Inside(0, newStart, targetDay.Map_hq);
-            Activity newActivity = new Inside(newStart, prevActivity.End, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
-            Activity defaultActivity2 = new Inside(prevActivity.End, expectedDay.L_activity.Count - 1, targetDay.Map_hq);
+            Activity newActivity = new Inside(newStart, newEnd, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            Activity defaultActivity2 = new Inside(newEnd, expectedDay.L_activity.Count - 1, targetDay.Map_hq);
 
             int i;
             for (i = 0; i < newStart; i++) { expected[i] = defaultActivity1; }
             for (i = newStart; i < newEnd; i++) { expected[i] = newActivity; }
             for (i = newEnd; i < expectedDay.L_activity.Count; i++) { expected[i] = defaultActivity2; }
 
-            bool areEqual = compareTwoActList(expected, targetDay.L_activity);
-            Assert.IsTrue(areEqual);
+            return compareTwoActList(expected, targetDay.L_activity);
+        }
+
+        [TestMethod()]
+        public void modifyHoursActivityTest()
+        {
+            Assert.IsTrue(
+                (modifyHoursActivityT(2, 5)) &&
+                (modifyHoursActivityT(10, 15)) &&
+                (modifyHoursActivityT(5, 7)) &&
+                (modifyHoursActivityT(5, 9)) &&
+                (modifyHoursActivityT(4, 9)) &&
+                (modifyHoursActivityT(4, 10)) &&
+                (modifyHoursActivityT(5, 10)));
         }
 
         /// <summary>

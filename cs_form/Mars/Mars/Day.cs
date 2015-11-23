@@ -51,7 +51,7 @@ public abstract class Day
         {
             l_activity[i] = newActivity; 
         }
-        //sortActivityList(); 
+        sortActivityList(); 
     }
 
 
@@ -80,27 +80,17 @@ public abstract class Day
 
     public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd)
     {
-        int prevStart = prevActivity.Start;
-        int prevEnd = prevActivity.End;
 
-        prevActivity.Start = newStart;
-        prevActivity.End = newEnd;
+        //we have to create a new activity and not only update the previous one not to have problems with sortActivity
+        Activity newActivity;
 
-        addActivity(prevActivity);
-        
-        //if the new hours are included in the previous ones, remove the gap hours
-        if (prevStart < newStart)
-        {
-            rmActivity(prevActivity, prevStart, Math.Min(newStart, prevEnd));
-        }
+        if (prevActivity is Inside) { newActivity = new Inside(newStart, newEnd, prevActivity.Place, prevActivity.Type); }
+        else { newActivity = new Outside(newStart, newEnd, prevActivity.Place, prevActivity.Type); }
+        newActivity.Description = prevActivity.Description;
+        newActivity.L_astronaut = prevActivity.L_astronaut;
 
-        if (newEnd < prevEnd)
-        {
-            rmActivity(prevActivity, Math.Max(newEnd, prevStart), prevEnd);
-        }
-
-        sortActivityList();
-
+        rmActivity(prevActivity);
+        addActivity(newActivity);
 
     }
 
@@ -116,8 +106,9 @@ public abstract class Day
 
     public void sortActivityList()
     {
-        //Stop at Count -1 because of i+1
-        for (int i = 0; i < l_activity.Count -1 ; i++)
+        //this function sort a list and its activity in order them to be coherent
+        
+        for (int i = 0; i < l_activity.Count -1 ; i++)//Stop at Count -1 because of i+1
         {
             //if two consecutive activities are different
             if (!(l_activity[i].Equals(l_activity[i + 1])))
