@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="4de670ed-f344-45b3-a19f-cee2dfcd8658" name="Roxane@ROXANE-PC 2015-11-22 19:20:32" runUser="Roxane-PC\Roxane" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="70a57d12-4034-45c1-85d5-2c175430aa23">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Roxane_ROXANE-PC 2015-11-22 19_20_32">
+      <DeploymentItem filename="C:\Users\Roxane\Documents\PI_Mars\cs_form\Mars\Mars\bin\Debug\Mars.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-11-22T19:20:32.8732905+01:00" queuing="2015-11-22T19:20:35.1320800+01:00" start="2015-11-22T19:20:35.2291460+01:00" finish="2015-11-22T19:20:36.2148054+01:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="rmActivityTest1" storage="c:\users\roxane\documents\pi_mars\cs_form\mars\testproject1\bin\debug\testproject1.dll" id="b92d0a91-6e4a-2cb2-7dd0-5eaa20d9f9db">
+      <Execution id="2f517894-0a1e-4f97-8605-362fd7942968" />
+      <TestMethod codeBase="C:/Users/Roxane/Documents/PI_Mars/cs_form/Mars/TestProject1/bin/Debug/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.DayTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="rmActivityTest1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="b92d0a91-6e4a-2cb2-7dd0-5eaa20d9f9db" executionId="2f517894-0a1e-4f97-8605-362fd7942968" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="2f517894-0a1e-4f97-8605-362fd7942968" testId="b92d0a91-6e4a-2cb2-7dd0-5eaa20d9f9db" testName="rmActivityTest1" computerName="ROXANE-PC" duration="00:00:00.0197967" startTime="2015-11-22T19:20:35.2701740+01:00" endTime="2015-11-22T19:20:36.0877204+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f517894-0a1e-4f97-8605-362fd7942968">
+    </UnitTestResult>
+  </Results>
+</TestRun>
