@@ -1,4 +1,4 @@
-﻿namespace MARS_perso
+﻿namespace Mars
 {
     partial class FsettingsEdition
     {
