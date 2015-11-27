@@ -117,7 +117,7 @@ namespace Mars
             List<Place> lp = new List<Place>();
             for (int i = start.Number; i <= end.Number; i++)
             {
-                if (l_day[i].Outside)
+                if (l_day[i].isOutside())
                 {
                     foreach (Outside out_act in l_day[i].L_activity) { lp.Add(out_act.Place); }
                 }
@@ -199,9 +199,8 @@ namespace Mars
                     break;
             }
             l_day[d.Number] = newDay;
-             //newDay.L_activity = d.L_activity; WRITE A SET ! 
+            newDay.L_activity = d.L_activity;  
             newDay.Report = d.Report;
-            newDay.Outside = d.Outside;
         }
 
         private void updateEnd()

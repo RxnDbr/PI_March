@@ -196,5 +196,20 @@ namespace TestProject1
             return true;
         }
 
+
+        /// <summary>
+        ///A test for isOutside
+        ///</summary>
+        [TestMethod()]
+        public void isOutsideTest()
+        {
+            Day target = CreateDay(); // TODO: Initialize to an appropriate value
+            Activity act = new Outside(10,15, target.Map_hq, "exploration");
+            target.addActivity(act);
+            bool expected = true; // TODO: Initialize to an appropriate value
+            bool actual;
+            actual = target.isOutside();
+            Assert.AreEqual(expected, actual);
+        }
     }   
 }

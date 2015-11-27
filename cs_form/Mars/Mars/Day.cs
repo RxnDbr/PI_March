@@ -13,13 +13,8 @@ public abstract class Day
     private int number;
     public int Number { get { return number; } }
 
-
-    private bool outside;
-    public bool Outside { get { return outside; } set { outside = value; } }
-
-
     private List<Activity> l_activity;
-    public List<Activity> L_activity { get { return l_activity; } }
+    public List<Activity> L_activity { get { return l_activity; } set {l_activity = value;} }
 
     private Place map_hq;
     public Place Map_hq { get { return map_hq; } }
@@ -158,7 +153,14 @@ public abstract class Day
         }
     }
 
-    public bool isOutside() { return true; } //write the function
+    public bool isOutside() 
+    {
+        foreach(Activity act in l_activity) 
+        {
+            if (act is Outside) {return true;}
+        }
+        return false; 
+    } //write the function
     //=======================================================================================================================================================================
 }
 
