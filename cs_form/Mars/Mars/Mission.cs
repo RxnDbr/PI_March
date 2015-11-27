@@ -149,7 +149,26 @@ namespace Mars
 
             return dayMin;
         }
+
         public int[] convertEarthDateInMissionDay() { return convertEarthDateInMissionDay(DateTime.Now); }
+
+        public DateTime convertMarsDayInEarthDate(int[] marsDayMinNumber) 
+        {
+            if (beginningDateEarth != DateTime.MinValue)
+            {
+                //make the same integrating minutes
+                int totalMin = (marsDayMinNumber[0] * 144 + marsDayMinNumber[1]);
+                int[] nbDayEarth = { totalMin / 148, totalMin % 148 };
+                DateTime convert = beginningDateEarth.AddDays(nbDayEarth[0]);
+                //add minutes, then return
+            }
+     
+            return DateTime.Now;
+        }
+
+        public DateTime convertMarsDayInEarthDate(int marsDayNumber) { return convertMarsDayInEarthDate(new int[] {marsDayNumber, 0});}
+
+        public DateTime convertMarsDayInEarthDate(Day marsDay) { return convertMarsDayInEarthDate(marsDay.Number); }
 
         public void startMission()
         {
@@ -205,8 +224,7 @@ namespace Mars
 
         private void updateEnd()
         {
-            endingDateEarth = new DateTime(beginningDateEarth.Year, beginningDateEarth.Month, beginningDateEarth.Day);
-            endingDateEarth.AddDays(howmanydays);
+            endingDateEarth = beginningDateEarth.AddDays(howmanydays);
         }
 
     }

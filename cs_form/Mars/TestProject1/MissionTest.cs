@@ -130,5 +130,23 @@ namespace TestProject1
 
             Assert.IsTrue(same);
         }
+
+        /// <summary>
+        ///A test for updateEnd
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("Mars.exe")]
+        public void updateEndTest()
+        {
+            int _howmanydays = 500; // TODO: Initialize to an appropriate value
+            int _hq_x = 700; // TODO: Initialize to an appropriate value
+            int _hq_y = 1000; // TODO: Initialize to an appropriate value
+            Mission target = new Mission(_howmanydays, _hq_x, _hq_y); // TODO: Initialize to an appropriate value
+            target.BeginningDateEarth = DateTime.Now;
+            int nbDayEarth = (_howmanydays * 144) / 148;
+            DateTime expected = target.BeginningDateEarth.AddDays(nbDayEarth);
+            DateTime actual = target.EndingDateEatrh;
+            Assert.AreEqual(expected, actual);
+}
     }
 }
