@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MARS_perso
+namespace Mars
 {
     public partial class FsettingsEdition : Form
     {

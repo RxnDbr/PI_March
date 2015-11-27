@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MARS_perso
+namespace Mars
 {
     public partial class FactivityEdition : Form
     {
