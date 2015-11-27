@@ -181,7 +181,7 @@ namespace TestProject1
         }
 
 
-        public bool compareTwoActList(List<Activity> l1, List<Activity> l2)
+        public static bool compareTwoActList(List<Activity> l1, List<Activity> l2)
         {
             for (int i = 0; i < l1.Count; i++ )
             {
