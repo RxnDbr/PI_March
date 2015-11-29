@@ -17,9 +17,6 @@ public abstract class Activity
     protected List<Astronaut> l_astronaut;
     public List<Astronaut> L_astronaut { get { return l_astronaut; } set { l_astronaut = value; } }
 
-    protected Place place;
-    public abstract Place Place;
-
     protected int start;
     public int Start { get { return start; } set { start = value; } }
 
@@ -30,12 +27,11 @@ public abstract class Activity
 
     #region constructor
 
-    public Activity(int _start, int _end, Place _place, string _type = "private")
+    public Activity(int _start, int _end, string _type = "private")
     {
         //choose the place in a list / with the map. If it's not there, create it
         start = _start;
         end = _end;
-        place = _place;
         type = _type;
     }
 

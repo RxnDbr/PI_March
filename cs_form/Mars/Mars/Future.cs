@@ -5,10 +5,7 @@ using System.Linq;
 using System.Text;
 
 public class Future : Day
-{
-    public override  string Report { get { return report; } }
-
-    public Future(int _number, Place _map_hq) : base(_number, _map_hq) { }
+{    public Future(int _number, Place _map_hq) : base(_number, _map_hq) { }
     #region Add, Remove or modify the activities list
 
 

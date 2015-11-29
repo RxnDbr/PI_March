@@ -61,12 +61,12 @@ namespace TestProject1
         //
         #endregion
 
-        internal virtual Day CreateDay()
+        internal virtual Future CreateDay()
         {
             // TODO: Instantiate an appropriate concrete class.
             int[] click = {700,1000};
             Place hq = new Place(0.0, 0.0, "HQ", click);
-            Day target = new Future(1, hq);
+            Future target = new Future(1, hq);
             return target;
         }
         /// <summary>
@@ -75,14 +75,14 @@ namespace TestProject1
         [TestMethod()]
         public void addActivityTest()
         {
-            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value
+            Future targetDay = CreateDay(); // TODO: Initialize to an appropriate value
             Day expectedDay = CreateDay();
 
             int startActivity = 5;
             int endActivity = 9;
 
             Activity defaultActivity1 = new Inside(0, startActivity, targetDay.Map_hq);
-            Activity newActivity = new Inside(startActivity, endActivity, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
+            Activity newActivity = new Inside(startActivity, endActivity, targetDay.Map_hq, "eating"); // TODO: Initialize to an appropriate value
             Activity defaultActivity2 = new Inside(endActivity, expectedDay.L_activity.Count - 1, targetDay.Map_hq);
 
             List<Activity> expected = expectedDay.L_activity;
@@ -104,7 +104,7 @@ namespace TestProject1
         [TestMethod()]
         public void rmActivityTest()
         {
-            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value  
+            Future targetDay = CreateDay(); // TODO: Initialize to an appropriate value  
             Day expectedDay = CreateDay();
             Activity prevActivity = new Inside(5, 9, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
             targetDay.addActivity(prevActivity);
@@ -121,7 +121,7 @@ namespace TestProject1
         [TestMethod()]
         public void rmActivityTest1()
         {
-            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value  
+            Future targetDay = CreateDay(); // TODO: Initialize to an appropriate value  
             Day expectedDay = CreateDay();
             Activity prevActivity = new Inside(5, 9, targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
             targetDay.addActivity(prevActivity);
@@ -145,7 +145,7 @@ namespace TestProject1
         //methode to test several cases
         public bool modifyHoursActivityT(int newStart, int newEnd)
         {
-            Day targetDay = CreateDay(); // TODO: Initialize to an appropriate value       
+            Future targetDay = CreateDay(); // TODO: Initialize to an appropriate value       
             Activity prevActivity = new Inside(5,9,targetDay.Map_hq, "coucou"); // TODO: Initialize to an appropriate value
             targetDay.addActivity(prevActivity);
             targetDay.modifyHoursActivity(prevActivity, newStart, newEnd);
@@ -201,7 +201,7 @@ namespace TestProject1
         [TestMethod()]
         public void isOutsideTest()
         {
-            Day target = CreateDay(); // TODO: Initialize to an appropriate value
+            Future target = CreateDay(); // TODO: Initialize to an appropriate value
             Activity act = new Outside(10,15, target.Map_hq, "exploration");
             target.addActivity(act);
             bool expected = true; // TODO: Initialize to an appropriate value

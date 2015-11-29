@@ -5,23 +5,21 @@ using System.Text;
 
 public class Astronaut
 {
-    private string nom
+    private string firtName;
+    public string firstName
     {
         get;
         set;
     }
 
-    private string prenom
+    private string lastName;
+    public string lastName
     {
         get;
         set;
     }
 
-    public virtual IEnumerable<Activity> l_activity
-    {
-        get;
-        set;
-    }
+    public Astronaut(string _firstName, string _lastName) { firstName = _firstName; _lastName = lastName; }
 
 }
 

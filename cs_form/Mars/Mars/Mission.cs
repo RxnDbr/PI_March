@@ -55,6 +55,7 @@ namespace Mars
         public List<Place> L_place { get { return l_place; } }
 
         # endregion
+
         #region constructor
 
         public Mission(int _howmanydays, int _hq_x = 700, int _hq_y = 1000)
@@ -74,6 +75,7 @@ namespace Mars
             lastUpDateEarth = DateTime.Now;
         }
         #endregion
+
         #region methodes
 
         #region astronaut management

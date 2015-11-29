@@ -5,7 +5,8 @@ using System.Text;
 
 public class Present : Day
 {
-    public override string Report { get { return report; } set { report = value.Substring(0, 1000); } }
+    protected string report;
+    public string Report { get { return report; } set { report = value.Substring(0, 1000); } }
 
     public Present(int _number, Place _map_hq) : base(_number, _map_hq) { }
     #region Add, Remove or modify the activities list

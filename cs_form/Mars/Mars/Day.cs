@@ -8,9 +8,6 @@ public abstract class Day
 {
     #region attributes
 
-    protected string report;
-    public abstract string Report;
-
     protected int number;
     public int Number { get { return number; } }
 
