@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 namespace TestProject1
 {
-    
-    
     /// <summary>
     ///This is a test class for MissionTest and is intended
     ///to contain all MissionTest Unit Tests
@@ -106,28 +104,29 @@ namespace TestProject1
         ///A test for changeDayStatus
         ///</summary>
         [TestMethod()]
-        public void changeDayStatusTest()
+        public void changeDaySatusTest()
         {
             int _howmanydays = 500; // TODO: Initialize to an appropriate value
             int _hq_x = 700; // TODO: Initialize to an appropriate value
             int _hq_y = 1000; // TODO: Initialize to an appropriate value
             Mission target = new Mission(_howmanydays, _hq_x, _hq_y); // TODO: Initialize to an appropriate value
-            int nbJour = 5;
+            target.BeginningDateEarth = new DateTime(2015, 11, 20);
             target.startMission();
+            int nbJour = target.convertEarthDateInMissionDay()[0];
             List<Day> expected = new List<Day>();
 
             int i;
-            for (i = 0; i < nbJour; i++) { expected.Insert(i,new Present(i,target.map_Hq)); }
-            for (i = nbJour; i < _howmanydays; i++) { expected.Insert(i, new Future(i, target.map_Hq)); }
+            for (i = 0; i < nbJour; i++) { expected.Insert(i,new Past(i,target.map_Hq)); }
+            expected.Insert(nbJour, new Present(nbJour, target.map_Hq));
+            for (i = nbJour+1; i < _howmanydays; i++) { expected.Insert(i, new Future(i, target.map_Hq)); }
 
             bool same = true;
             int j=0;
             while (same && (j < _howmanydays))
             {
-                if (!(target.L_day[j].Number == expected[j].Number)) { same = false; }
+                if (!(target.L_day[j].GetType().Equals(expected[j].GetType()))) { same = false; }
                 j++;
             }
-
             Assert.IsTrue(same);
         }
 
@@ -142,11 +141,31 @@ namespace TestProject1
             int _hq_x = 700; // TODO: Initialize to an appropriate value
             int _hq_y = 1000; // TODO: Initialize to an appropriate value
             Mission target = new Mission(_howmanydays, _hq_x, _hq_y); // TODO: Initialize to an appropriate value
-            target.BeginningDateEarth = DateTime.Now;
-            int nbDayEarth = (_howmanydays * 144) / 148;
+            target.BeginningDateEarth = new DateTime(2015, 11, 27);
+            int nbDayEarth = (_howmanydays * 148) / 144;
+            int nbMinEarth = ((_howmanydays * 148) % 144);
             DateTime expected = target.BeginningDateEarth.AddDays(nbDayEarth);
+            expected = expected.AddMinutes(nbMinEarth);
             DateTime actual = target.EndingDateEatrh;
             Assert.AreEqual(expected, actual);
-}
+        }
+
+        /// <summary>
+        ///A test for getMarsDay
+        ///</summary>
+        [TestMethod()]
+        public void getMarsDayTest()
+        {
+            int _howmanydays = 500; // TODO: Initialize to an appropriate value
+            int _hq_x = 700; // TODO: Initialize to an appropriate value
+            int _hq_y = 1000; // TODO: Initialize to an appropriate value
+            Mission target = new Mission(_howmanydays, _hq_x, _hq_y); // TODO: Initialize to an appropriate value
+            target.BeginningDateEarth = new DateTime(2015, 11, 20);
+            target.startMission();
+            Day expected = target.L_day[9]; // TODO: Initialize to an appropriate value
+            Day actual;
+            actual = target.getMarsDay();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

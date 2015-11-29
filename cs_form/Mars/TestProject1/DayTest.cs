@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace TestProject1
-{
-    
-    
+{   
     /// <summary>
     ///This is a test class for DayTest and is intended
     ///to contain all DayTest Unit Tests
@@ -210,6 +208,40 @@ namespace TestProject1
             bool actual;
             actual = target.isOutside();
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for sortActivityList
+        ///</summary>
+        [TestMethod()]
+        public void sortActivityListTest()
+        {
+            Day target = CreateDay(); // TODO: Initialize to an appropriate value
+            target.sortActivityList();
+
+            Activity sleeping1 = new Inside(0, 7*6, target.Map_hq, "sleeping");
+            Activity sleeping2 = new Inside(22*6, 147, target.Map_hq, "sleeping");
+            Activity eating1 = new Inside(12*6, 13*6, target.Map_hq, "eating");
+            Activity eating2 = new Inside(19*6, 20*6, target.Map_hq, "eating");
+            Activity defaultAct1 = new Inside(7*6, 12*6, target.Map_hq, "private");
+            Activity defaultAct2 = new Inside(13*6, 19*6, target.Map_hq, "private");
+            Activity defaultAct3 = new Inside(20*6, 22*6, target.Map_hq, "private");
+
+            List<Activity> expected = new List<Activity>();
+
+            for (int i = 0; i <= 147; i++) //24*6+4 -1 because no activity at 24:40
+            {
+                if (i >= 0 && i < 7*6) { expected.Insert(i, sleeping1); }
+                else if (i >= 7 * 6 && i < 12 * 6) { expected.Insert(i, defaultAct1); }
+                else if (i >= 12 * 6 && i < 13 * 6) { expected.Insert(i, eating1); }
+                else if (i >= 13 * 6 && i < 19 * 6) { expected.Insert(i, defaultAct2); }
+                else if (i >= 19 * 6 && i < 20 * 6) { expected.Insert(i, eating2); }
+                else if (i >= 20 * 6 && i < 22 * 6) { expected.Insert(i, defaultAct3); }
+                else if (i >= 22 * 6 && i < 147) { expected.Insert(i, sleeping2); }
+                else { expected.Insert(i, defaultAct1); }
+            }
+
+            Assert.IsTrue(compareTwoActList(target.L_activity, expected));
         }
     }   
 }

@@ -6,10 +6,9 @@ using System.Text;
 
 public class Outside : Activity
 {
-    public Outside(int _start, int _end, Place _place, string _type = "private") : base(_start, _end, _place, _type) { }
 
-
-
+    public override Place Place { get { return place; } set { place = value; } }
+    public Outside(int _start, int _end, Place _place, string _type) : base(_start, _end, _place, _type) { }
 }
 
 

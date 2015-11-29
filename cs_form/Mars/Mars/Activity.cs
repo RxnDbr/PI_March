@@ -6,23 +6,29 @@ using System.Text;
 
 public abstract class Activity
 {
-    private string description;
+    #region attributes
+
+    protected string description;
     public string Description { get { return description; } set { description = value; } }
 
-    private string type;
+    protected string type;
     public string Type { get { return type; } }
 
-    private List<Astronaut> l_astronaut;
+    protected List<Astronaut> l_astronaut;
     public List<Astronaut> L_astronaut { get { return l_astronaut; } set { l_astronaut = value; } }
 
-    private Place place;
-    public Place Place { get { return place; } set { place = value; } }
+    protected Place place;
+    public abstract Place Place;
 
-    private int start;
+    protected int start;
     public int Start { get { return start; } set { start = value; } }
 
-    private int end;
+    protected int end;
     public int End { get { return end; } set { end = value; } }
+
+    #endregion
+
+    #region constructor
 
     public Activity(int _start, int _end, Place _place, string _type = "private")
     {
@@ -33,6 +39,11 @@ public abstract class Activity
         type = _type;
     }
 
+    #endregion
+
+    #region methodes
+
+    #region updates methodes
     public void addDescription(string _description)
     {
         description = _description;
@@ -42,6 +53,9 @@ public abstract class Activity
     {
         l_astronaut.Add(_astronaut);
     }
+    #endregion
+
+    #endregion
 
 }
 

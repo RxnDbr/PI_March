@@ -6,8 +6,7 @@ using System.Text;
 
 public class Inside : Activity
 {
+    public override Place Place { get { return place; } }
     public Inside(int _start, int _end, Place map_hq, string _type = "private") : base(_start, _end, map_hq, _type) { }
-
-
 }
 

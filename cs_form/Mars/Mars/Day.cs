@@ -6,100 +6,38 @@ using System.Text;
 
 public abstract class Day
 {
-    //properties
-    private string report;
-    public string Report { get { return report; } set { report = value; } }
+    #region attributes
 
-    private int number;
+    protected string report;
+    public abstract string Report;
+
+    protected int number;
     public int Number { get { return number; } }
 
-    private List<Activity> l_activity;
+    protected List<Activity> l_activity;
     public List<Activity> L_activity { get { return l_activity; } set {l_activity = value;} }
 
-    private Place map_hq;
+    protected Place map_hq;
     public Place Map_hq { get { return map_hq; } }
 
+    #endregion
 
-    //constructor
+    #region constructor
 
     public Day(int _number, Place _map_hq)
     {
         number = _number;
         map_hq = _map_hq;
         l_activity = new List<Activity>();
-
-        Activity defaultAct = new Inside(0, 147, map_hq);
-        for (int i = 0; i <= 147; i++) //24*6+4 -1 because no activity at 24:40
-        {
-            //create default activity
-            l_activity.Insert(i, defaultAct);
-        }
+        createDfaultActList();
+        sortActivityList();
     }
 
-    //methodes
+    #endregion
 
-    //==============================================================================================
-    //Add, Remove or modify the activities list
-    public void addActivity(Activity newActivity)
-    {
-        //add an activity and remove the previous one
-        for (int i = newActivity.Start; i < newActivity.End; i++)
-        {
-            l_activity[i] = newActivity; 
-        }
-        sortActivityList(); 
-    }
+    #region methodes
 
-
-    //remove an activity and replace it by an activity by default
-    //it is possible to remove only a part of the activity => when you make it shorter for instance
-
-    public void rmActivity(Activity prevActivity, int start, int end)
-    {
-        //has to check that the activity is on the list
-        //has to check that the part of the activity to remove is included in activity
-        if ((l_activity.Contains(prevActivity)))// && (prevActivity.Start <= start) && (prevActivity.End >= end))
-        {
-            //replace the remove activity by the default one which is private at the hq
-            Activity newActivity = new Inside(start, end, map_hq);
-            addActivity(newActivity);
-        }
-        else
-        {
-            //error message
-        }
-    }
-
-    public void rmActivity(Activity prevActivity)
-    {
-        rmActivity(prevActivity, prevActivity.Start, prevActivity.End);
-    }
-
-    public void modifyHoursActivity(Activity prevActivity, int newStart, int newEnd)
-    {
-
-        //we have to create a new activity and not only update the previous one not to have problems with sortActivity
-        Activity newActivity;
-
-        if (prevActivity is Inside) { newActivity = new Inside(newStart, newEnd, prevActivity.Place, prevActivity.Type); }
-        else { newActivity = new Outside(newStart, newEnd, prevActivity.Place, prevActivity.Type); }
-        newActivity.Description = prevActivity.Description;
-        newActivity.L_astronaut = prevActivity.L_astronaut;
-
-        rmActivity(prevActivity);
-        addActivity(newActivity);
-
-    }
-
-    public void modifyContentActivity(Activity prevActivity, string newDescription)
-    {
-        prevActivity.Description = newDescription;
-    }
-
-    public void modifyContentActivity(Activity prevActivity, Place newPlace)
-    {
-        prevActivity.Place = newPlace;
-    }
+    #region sort / update activity list
 
     public void sortActivityList()
     {
@@ -152,6 +90,9 @@ public abstract class Day
             }
         }
     }
+    #endregion
+
+    #region outside activities
 
     public bool isOutside() 
     {
@@ -159,9 +100,36 @@ public abstract class Day
         {
             if (act is Outside) {return true;}
         }
-        return false; 
-    } 
-    //=======================================================================================================================================================================
+        return false;
+    }
+    #endregion
+
+    #region intern methodes
+    private void createDfaultActList()
+    {
+        Activity sleeping1 = new Inside(0, 7 * 6, map_hq, "sleeping");
+        Activity sleeping2 = new Inside(22 * 6, 147, map_hq, "sleeping");
+        Activity eating1 = new Inside(12 * 6, 13 * 6, map_hq, "eating");
+        Activity eating2 = new Inside(19 * 6, 20 * 6, map_hq, "eating");
+        Activity defaultAct1 = new Inside(7 * 6, 12 * 6, map_hq, "private");
+        Activity defaultAct2 = new Inside(13 * 6, 19 * 6, map_hq, "private");
+        Activity defaultAct3 = new Inside(20 * 6, 22 * 6, map_hq, "private");
+
+        for (int i = 0; i <= 147; i++) //24*6+4 -1 because no activity at 24:40
+        {
+            if (i >= 0 && i < 7 * 6) { l_activity.Insert(i, sleeping1); }
+            else if (i >= 7 * 6 && i < 12 * 6) { l_activity.Insert(i, defaultAct1); }
+            else if (i >= 12 * 6 && i < 13 * 6) { l_activity.Insert(i, eating1); }
+            else if (i >= 13 * 6 && i < 19 * 6) { l_activity.Insert(i, defaultAct2); }
+            else if (i >= 19 * 6 && i < 20 * 6) { l_activity.Insert(i, eating2); }
+            else if (i >= 20 * 6 && i < 22 * 6) { l_activity.Insert(i, defaultAct3); }
+            else if (i >= 22 * 6 && i < 147) { l_activity.Insert(i, sleeping2); }
+            else { l_activity.Insert(i, defaultAct1); }
+        }
+
+    }
+    #endregion
+    #endregion
 }
 
 
